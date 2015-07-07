@@ -15,6 +15,48 @@ public class JavaExcelApp {
     public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy,MM,dd"); //формат даты
 
 	public static void main(String[] args) throws IOException{
+        //запись/создание
+        Workbook wb0 = new HSSFWorkbook();
+        Sheet sheet = wb0.createSheet("Формулы");
+        Row row0 = sheet.createRow(0);
+
+        Cell cell0 = row0.createCell(0);
+        cell0.setCellValue(2);
+
+        Cell cell1 = row0.createCell(1);
+        cell1.setCellValue(7);
+
+        Cell cell2 = row0.createCell(2);
+        cell2.setCellFormula("A1+B1");
+
+
+        Row row3 = sheet.createRow(3);
+        Cell cell3 = row3.createCell(0);
+        cell3.setCellValue(1);
+
+        Row row4 = sheet.createRow(4);
+        Cell cell4 = row4.createCell(0);
+        cell4.setCellValue(2);
+
+        Row row5 = sheet.createRow(5);
+        Cell cell5 = row5.createCell(0);
+        cell5.setCellValue(3);
+
+        Row row6 = sheet.createRow(6);
+        Cell cell6 = row6.createCell(0);
+        cell6.setCellValue(4);
+
+        Row row7 = sheet.createRow(7);
+        Cell cell7 = row7.createCell(0);
+        cell7.setCellFormula("SUM(A4:A7)");
+
+
+        FileOutputStream fos=new FileOutputStream("c:/Users/vas/Documents/readXLS.xls");
+        wb0.write(fos);
+        fos.close();
+        wb0.close();
+
+        //чтение
         FileInputStream fis = new FileInputStream("c:/Users/vas/Documents/readXLS.xls");
 		Workbook wb = new HSSFWorkbook(fis); //
         for(Row row:wb.getSheetAt(0)){
